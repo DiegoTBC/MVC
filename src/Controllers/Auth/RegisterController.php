@@ -3,7 +3,6 @@
 
 namespace Src\Controllers\Auth;
 
-
 use CoffeeCode\Router\Router;
 use League\Plates\Engine;
 use Src\Models\User;
@@ -40,6 +39,7 @@ class RegisterController
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
         $user->save();
 
+        $_SESSION['auth'] = true;
         $this->router->redirect(url(""));
     }
 

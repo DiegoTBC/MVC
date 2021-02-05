@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Src\Controllers\Auth;
-
 
 use CoffeeCode\Router\Router;
 use League\Plates\Engine;
@@ -17,7 +15,6 @@ class LoginController
     {
         $this->view = new Engine(__DIR__ . "/../../../view/auth", "php");
         $this->router = new Router(URL_BASE);
-
     }
 
     public function index()
@@ -40,6 +37,7 @@ class LoginController
             $this->router->redirect("login");
         }
 
+        $_SESSION['auth'] = true;
         $this->router->redirect("");
     }
 }

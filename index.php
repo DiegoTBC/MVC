@@ -4,6 +4,8 @@ use CoffeeCode\Router\Router;
 
 require 'vendor/autoload.php';
 
+session_start();
+
 $router = new Router(URL_BASE);
 
 /**

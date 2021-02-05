@@ -9,7 +9,6 @@
     <title><?= $title ?></title>
 </head>
 <body>
-
     <?= $this->section('conteudo')?>
 
 
