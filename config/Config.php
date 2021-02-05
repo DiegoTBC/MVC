@@ -4,7 +4,7 @@ define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
     "host" => "localhost",
     "port" => "3306",
-    "dbname" => "",
+    "dbname" => "testando",
     "username" => "root",
     "passwd" => "",
     "options" => [
@@ -15,4 +15,4 @@ define("DATA_LAYER_CONFIG", [
     ]
 ]);
 
-define("URL_BASE", "");
+define("URL_BASE", "http://localhost/MVC/MVC");

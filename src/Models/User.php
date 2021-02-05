@@ -16,7 +16,7 @@ class User extends DataLayer
          * 3º Param: string = nome da chave primaria, deixei em branco caso seja "id"
          * 4º Param: bool = tabela possui campos timestamps?
          */
-        parent::__construct("users", ["first_name", "last_name"], "id", true);
+        parent::__construct("users", ["name", "email", "password"]);
     }
 
 }

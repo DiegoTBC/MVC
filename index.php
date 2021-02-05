@@ -16,6 +16,12 @@ $router->namespace("Src\Controllers");
 $router->group(null);
 $router->get("/", "Controller:home", "controller.home");
 
+$router->get("/register", "Auth\RegisterController:index");
+$router->post("/register", "Auth\RegisterController:create");
+
+$router->get("/login", "Auth\LoginController:index");
+$router->post("/login", "Auth\LoginController:login");
+
 /**
  * group by routes and namespace
  * this produces routes for /admin/route and /admin/route/$id
