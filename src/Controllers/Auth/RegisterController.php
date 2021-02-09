@@ -36,7 +36,7 @@ class RegisterController
         $user = new User();
         $user->name = ucwords($data['name']);
         $user->email = $data['email'];
-        $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
+        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
         $user->save();
 
         $_SESSION['auth'] = true;
