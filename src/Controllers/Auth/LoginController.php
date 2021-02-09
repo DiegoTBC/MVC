@@ -24,16 +24,18 @@ class LoginController
 
     public function login($data)
     {
-        $user = (new User())->find("email = :email", "email={$data['email']}")->fetch();
-        if (!$user) {
-            $_SESSION['login_warning'] =  "Usuario não existe";
-            $this->router->redirect("login");
+        $emailIsValid = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
+
+        if (!$emailIsValid){
+            $_SESSION['register_warning'] = "Email informado possui formato inválido";
+            $this->router->redirect(url("login"));
         }
 
-        $passwordIsCorrect = password_verify($data['password'], $user->password);
+        $user = (new User())->find("email = :email", "email={$emailIsValid}")->fetch();
+        $passwordIsValid = password_verify($data['password'], $user->password);
 
-        if (!$passwordIsCorrect) {
-            $_SESSION['login_warning'] = "Email ou senha invalidos";
+        if (!$user || !$passwordIsValid) {
+            $_SESSION['login_warning'] =  "Email ou senha invalidos.";
             $this->router->redirect("login");
         }
 

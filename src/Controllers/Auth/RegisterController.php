@@ -26,7 +26,14 @@ class RegisterController
 
     public function create($data)
     {
-        $user = (new User())->find("email = :email", "email={$data['email']}")->fetch();
+        $emailIsValid = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
+
+        if (!$emailIsValid){
+            $_SESSION['register_warning'] = "Email informado possui formato inválido";
+            $this->router->redirect(url("register"));
+        }
+
+        $user = (new User())->find("email = :email", "email={$emailIsValid}")->fetch();
         if ($user) {
             unset($user);
             $_SESSION['register_warning'] = "Email ja cadastrado";
@@ -35,7 +42,7 @@ class RegisterController
 
         $user = new User();
         $user->name = ucwords($data['name']);
-        $user->email = $data['email'];
+        $user->email = filter_var($emailIsValid, FILTER_SANITIZE_EMAIL);
         $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
         $user->save();
 
